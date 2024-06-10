@@ -1,28 +1,15 @@
-import {
-  MDBBtn,
-  MDBCard,
-  MDBCardBody,
-  MDBCol,
-  MDBContainer,
-  MDBIcon,
-  MDBRow,
-  MDBTooltip,
-} from 'mdb-react-ui-kit';
-
-const Container = ({ children }) => {
+const Container = ({ children, classNames }) => {
   return (
-    <MDBContainer className="py-5">
-      <MDBRow className="d-flex justify-content-center align-items-center h-100">
-        <MDBCol>
-          <MDBCard
-            id="list1"
-            style={{ borderRadius: '.75rem', backgroundColor: '#eff1f2' }}
-          >
-            <MDBCardBody className="py-4 px-4 px-md-5">{children}</MDBCardBody>
-          </MDBCard>
-        </MDBCol>
-      </MDBRow>
-    </MDBContainer>
+    <div
+      className={`container mx-auto mt-5 px-auto py-5 ${classNames}`}
+      style={{
+        background: 'var(--bs-secondary-bg)',
+        borderRadius: '5px',
+        marginLeft: '5px',
+      }}
+    >
+      {children}
+    </div>
   );
 };
 export default Container;
