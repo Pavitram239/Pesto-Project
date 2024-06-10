@@ -1,4 +1,4 @@
-import vine from '@vinejs/vine';
+import vine, { errors } from "@vinejs/vine";
 
 const taskValidationSchema = vine.object({
   title: vine.string().minLength(3).maxLength(50),
@@ -10,7 +10,8 @@ export const validationMiddleware = async (req, res, next) => {
   const data = req.body;
 
   try {
-    const output = await vine.validate({ taskValidationSchema, data });
+    const validator = vine.compile(taskValidationSchema);
+    const output = await validator.validate(data);
     next();
   } catch (error) {
     next(error);
