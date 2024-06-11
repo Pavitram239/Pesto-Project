@@ -6,14 +6,17 @@ import {
   getTasks,
   updateTask,
 } from '../controllers/task.controller.js';
-import { validationMiddleware } from '../middlewares/Validation.js';
+import {
+  idValidation,
+  validationMiddleware,
+} from '../middlewares/Validation.js';
 const router = express.Router();
 
 router.route('/').get(getTasks).post(validationMiddleware, createTask);
 router
   .route('/:id')
-  .get(getTask)
-  .post(validationMiddleware, updateTask)
-  .delete(deleteTask);
+  .get(idValidation, getTask)
+  .post(idValidation, validationMiddleware, updateTask)
+  .delete(idValidation, deleteTask);
 
 export default router;
