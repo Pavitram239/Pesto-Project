@@ -6,25 +6,19 @@ import {
   TodoList,
 } from './components';
 import './App.css';
-import { useState } from 'react';
-const App = () => {
-  const [show, setShow] = useState(false);
-  const openModal = () => {
-    setShow(true);
-  };
 
-  const closeModal = () => {
-    setShow(false);
-  };
-  return (
-    <Container>
-      <CenteredModal show={show} onHide={closeModal} />
-      <Heading />
-      <hr />
-      <CreateTask openModal={openModal} />
-      <hr />
-      <TodoList />
-    </Container>
-  );
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Home from './Home';
+import { loader as TaskLoader } from './Home';
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />,
+    loader: TaskLoader,
+  },
+]);
+
+const App = () => {
+  return <RouterProvider router={router}></RouterProvider>;
 };
 export default App;

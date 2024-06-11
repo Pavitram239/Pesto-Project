@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import { Modal } from 'react-bootstrap';
 import NewForm from './Form/NewForm';
+import { addTaskHandler } from '../utils/hooks';
 
 const CenteredModal = (props) => {
   return (
@@ -16,14 +17,8 @@ const CenteredModal = (props) => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <NewForm />
+        <NewForm onHide={props.onHide} />
       </Modal.Body>
-      <Modal.Footer>
-        <Button className="btn-light" onClick={props.onHide}>
-          Close
-        </Button>
-        <Button>create</Button>
-      </Modal.Footer>
     </Modal>
   );
 };
